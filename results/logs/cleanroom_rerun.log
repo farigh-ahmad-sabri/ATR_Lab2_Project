@@ -1,0 +1,61 @@
+data OK: checksums match
+python         3.13.18
+platform       Linux-6.18.44-fc-v233-x86_64-with-glibc2.39
+numpy          2.5.3
+pandas         3.0.5
+scikit-learn   1.9.1
+scipy          1.18.1
+matplotlib     3.11.2
+pyyaml         6.0.3
+determinism OK
+data OK: 12 files verified
+........                                                                 [100%]
+8 passed in 1.70s
+HALLMARK script (unchanged): {'dev_public': {'dr': 0.456, 'fpr': 0.04}, 'test_public': {'dr': 0.44, 'fpr': 0.107}}
+port dev_public: DR 0.456 FPR 0.040 identical-to-original=True  reported DR 0.468
+port test_public: DR 0.440 FPR 0.107 identical-to-original=True  reported DR 0.388
+metric cross-check: {'hallmark_dr': 0.85687, 'mine_dr': 0.85687, 'hallmark_fpr': 0.159609, 'mine_fpr': 0.159609, 'hallmark_auroc': 0.924587, 'mine_auroc': 0.924587, 'agree': True}
+leakage audit: {'shared_keys_dev_test': 0, 'shared_titles_dev_test': 1, 'shared_titles_ext_vs_hallmark': 0, 'dev_counts': {'valid': 504, 'hallucinated': 615}, 'test_counts': {'valid': 307, 'hallucinated': 524}, 'ext_counts': {'valid': 172, 'hallucinated': 169}, 'ext_topics': 40}
+wrote results/logs/baseline_validation.json
+                          variant  test_auroc    dr   fpr  dr_fabricated_doi  dr_tier1  dr_tier3
+0               M1 (all features)       0.797 0.505 0.085              0.828     0.805     0.482
+1  M1 without DOI-prefix features       0.784 0.464 0.087              0.310     0.688     0.464
+  comparison  delta_auroc  ci_lo  ci_hi  p_le_0
+0    M1 - B2        0.033  0.013  0.054   0.000
+1    M1 - M2        0.009 -0.025  0.043   0.291
+figures written to /tmp/claude-0/-home-claude/ca18133d-e76f-54a6-92a3-b8ea1f17536a/scratchpad/cleanroom/AITR_Lab02_MCL2026011_CitationSurface/results/figures
+wrote notebooks/walkthrough.ipynb with 8 executed cells
+ROOT = AITR_Lab02_MCL2026011_CitationSurface
+dev   n=1119  hallucinated= 615  valid= 504
+test  n= 831  hallucinated= 524  valid= 307
+W&W   n= 341  hallucinated= 169  valid= 172
+
+visible keys: ['bibtex_type', 'fields']
+rendered   : Zitao Liu and Qiongqiong Liu and Jiahao Chen and Shuyan Huang and Weiqi Luo. 2031. simpleKT: A Simple But Tough-to-Beat Baseline for Knowledge Tracing. ICLR
+label      : 1 future_date
+0 | R. F. Baumeister and M. R. Leary. 1995. The need to belong: Desire for interpersonal attachments as a fundamental human motivation. Psychological bulletin | completeness 4
+1 | M. Jockers and D. Witten. 2010. A computational approach to theme in the novel. Literary and Linguistic Computing | completeness 4
+50 features
+{'arxiv_before_publication_violated': np.float64(0.0), 'arxiv_year_gap': np.float64(0.0), 'auth_any_digit': np.float64(0.0), 'auth_any_nonascii': np.float64(0.0), 'auth_dup_surname': np.float64(1.0), 'auth_frac_full_given': np.float64(1.0), 'auth_frac_hyphen': np.float64(0.0), 'auth_frac_initials': np.float64(0.0), 'auth_max_surname_len': np.float64(5.0), 'auth_mean_surname_len': np.float64(3.6), 'auth_missing': np.float64(0.0), 'author_chars': np.float64(75.0)}
+eval_set              test_public[full-trained,full-scored]  test_public[eq-trained,eq-scored]  ww_transfer[full-trained]  ww_groupcv
+model                                                                                                                                
+B1_completeness_rule                                  0.515                              0.512                      0.500       0.500
+B2_hallmark_gbm                                       0.764                              0.721                      0.546       0.592
+M1_extended_gbm                                       0.797                              0.748                      0.549       0.680
+M2_charngram_lr                                       0.788                              0.746                      0.525       0.629
+                                               reference    eval_set  auroc  used_lookups
+                              llm_openrouter_deepseek_r1 test_public  0.778         False
+                              llm_openrouter_deepseek_v3 test_public  0.589         False
+                             llm_openrouter_gemini_flash test_public  0.738         False
+                               llm_openrouter_gemini_pro test_public  0.720         False
+                         llm_openrouter_llama_4_maverick test_public  0.750         False
+                                  llm_openrouter_mistral test_public  0.716         False
+                                 llm_openrouter_qwen_max test_public  0.677         False
+                                     llm_openrouter_qwen test_public  0.661         False
+bibtex-updater 1.4.0 (database lookup; HALLMARK release)          ww  0.957          True
+M1 test AUROC (live): 0.797
+done: see results/tables and results/figures
+
+real	4m53.241s
+user	4m47.495s
+sys	0m1.536s

@@ -1,0 +1,6 @@
+                          variant  test_auroc    dr   fpr  dr_fabricated_doi  dr_tier1  dr_tier3
+0               M1 (all features)       0.797 0.505 0.085              0.828     0.805     0.482
+1  M1 without DOI-prefix features       0.784 0.464 0.086              0.310     0.688     0.464
+  comparison  delta_auroc  ci_lo  ci_hi  p_le_0
+0    M1 - B2        0.033  0.013  0.054   0.000
+1    M1 - M2        0.009 -0.025  0.043   0.291

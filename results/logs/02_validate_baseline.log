@@ -1,0 +1,6 @@
+HALLMARK script (unchanged): {'dev_public': {'dr': 0.456, 'fpr': 0.04}, 'test_public': {'dr': 0.44, 'fpr': 0.107}}
+port dev_public: DR 0.456 FPR 0.040 identical-to-original=True  reported DR 0.468
+port test_public: DR 0.440 FPR 0.107 identical-to-original=True  reported DR 0.388
+metric cross-check: {'hallmark_dr': 0.85687, 'mine_dr': 0.85687, 'hallmark_fpr': 0.159609, 'mine_fpr': 0.159609, 'hallmark_auroc': 0.924587, 'mine_auroc': 0.924587, 'agree': True}
+leakage audit: {'shared_keys_dev_test': 0, 'shared_titles_dev_test': 1, 'shared_titles_ext_vs_hallmark': 0, 'dev_counts': {'valid': 504, 'hallucinated': 615}, 'test_counts': {'valid': 307, 'hallucinated': 524}, 'ext_counts': {'valid': 172, 'hallucinated': 169}, 'ext_topics': 40}
+wrote results/logs/baseline_validation.json
