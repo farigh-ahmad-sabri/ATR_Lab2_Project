@@ -1,0 +1,17 @@
+data/external/
+data/raw/
+__pycache__/
+*.pyc
+.pytest_cache/
+paper/*.aux
+paper/*.log
+paper/*.bbl
+paper/*.blg
+paper/*.out
+data_bundle.zip
+ATR_Lab02_MCL2026011_CitationSurface.zip
+.vscode/
+.ipynb_checkpoints/
+.env
+Thumbs.db
+.DS_Store

@@ -1,0 +1,15 @@
+== commit fa0cc7b
+--- dev_public: 158 four-mode positives, 513 valid ---
+  gradient boosting        DR 0.468   FPR 0.045
+--- test_public: 139 four-mode positives, 312 valid ---
+  gradient boosting        DR 0.388   FPR 0.096
+== commit 908a405~1
+--- dev_public: 158 four-mode positives, 513 valid ---
+  gradient boosting        DR 0.468   FPR 0.045
+--- test_public: 139 four-mode positives, 312 valid ---
+  gradient boosting        DR 0.388   FPR 0.096
+== commit 908a405
+--- dev_public: 160 four-mode positives, 504 valid ---
+  gradient boosting        DR 0.456   FPR 0.040
+--- test_public: 141 four-mode positives, 307 valid ---
+  gradient boosting        DR 0.440   FPR 0.107

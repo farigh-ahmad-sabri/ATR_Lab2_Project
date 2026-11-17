@@ -1,0 +1,59 @@
+# FROZEN experimental protocol (frozen 2026-11-04, before any model in this
+# project was scored on test_public or on the W&W set). Any later change must be
+# logged in research_decisions.md under "Protocol changes".
+protocol_version: 1.0
+
+data:
+  source_repo: https://github.com/rpatrik96/hallmark.git
+  source_commit: c62d296d1d2e3e6f9cb325e37963b63350ab2ca4   # HALLMARK v1.2.4
+  train_split: dev_public          # used for fitting and threshold selection only
+  test_split: test_public          # held out; scored once per model
+  external_split: supplement_chatgpt_citations   # Walters & Wilder ChatGPT citations
+  label_positive: HALLUCINATED
+
+features:
+  lookups_allowed: false           # nothing may query a database or the web
+  ignored_record_fields:           # metadata that would leak the label
+    - label
+    - hallucination_type
+    - difficulty_tier
+    - explanation
+    - generation_method
+    - source
+    - source_conference
+    - subtests
+    - added_to_benchmark
+    - publication_date
+    - bibtex_key
+  groups:
+    hallmark: [hallmark]           # B2: HALLMARK shortcut-control feature set, unchanged
+    extended: [hallmark, author_style, title_style, id_consistency]   # M1
+
+models:
+  B0_majority: {type: dummy_most_frequent}
+  B1_completeness_rule: {type: completeness_rule, threshold_selected_on: train}
+  B2_hallmark_gbm: {type: gradient_boosting, features: hallmark}
+  M1_extended_gbm: {type: gradient_boosting, features: extended}
+  M2_charngram_lr: {type: tfidf_char_lr, ngram_range: [2, 5], min_df: 2, C: 1.0}
+  gradient_boosting_params: {n_estimators: 100, learning_rate: 0.1, max_depth: 3}  # sklearn defaults, as in HALLMARK
+
+seeds: [0, 1, 2, 3, 4]
+
+evaluation:
+  primary_metric: auroc            # higher is better
+  bootstrap: {n_resamples: 1000, seed: 0, ci: 0.95}
+  threshold_rule: "score threshold giving FPR closest to 0.10 on 5-fold CV predictions of the train split"
+  secondary_metrics: [detection_rate, false_positive_rate, mcc, f1]
+  decision_rule_signal: "AUROC 95% CI lower bound > 0.5 means the surface form carries usable signal"
+  external_cv: {scheme: stratified_group_kfold, n_splits: 5, group: topic_id_from_key}
+
+deep_analyses:
+  - per_type_and_tier_detection
+  - feature_group_ablation        # drop one group at a time from M1
+  - format_equalisation           # render every entry to {author,title,venue,year}
+  - transfer_to_external_set
+  - error_analysis_of_misses
+
+reference_points:                  # not re-run; released per-entry outputs, re-scored here
+  llm_readers_test_public: results/llm_openrouter_*_test_public_predictions.jsonl
+  lookup_tool_external: data/v1.2/baseline_results/bibtexupdater_raw_supplement_chatgpt_citations.jsonl

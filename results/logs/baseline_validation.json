@@ -1,0 +1,59 @@
+{
+  "original_script": {
+    "dev_public": {
+      "dr": 0.456,
+      "fpr": 0.04
+    },
+    "test_public": {
+      "dr": 0.44,
+      "fpr": 0.107
+    }
+  },
+  "port": {
+    "dev_public": {
+      "n_pos": 160,
+      "n_neg": 504,
+      "dr": 0.4562,
+      "fpr": 0.0397,
+      "matches_original_script": true,
+      "reported_in_hallmark_readme": 0.468,
+      "diff_vs_reported": -0.0118
+    },
+    "test_public": {
+      "n_pos": 141,
+      "n_neg": 307,
+      "dr": 0.4397,
+      "fpr": 0.1075,
+      "matches_original_script": true,
+      "reported_in_hallmark_readme": 0.388,
+      "diff_vs_reported": 0.0517
+    }
+  },
+  "metric_crosscheck": {
+    "hallmark_dr": 0.8568702290076335,
+    "mine_dr": 0.8568702290076335,
+    "hallmark_fpr": 0.15960912052117263,
+    "mine_fpr": 0.15960912052117263,
+    "hallmark_auroc": 0.9245872392271935,
+    "mine_auroc": 0.9245872392271925,
+    "agree": true
+  },
+  "leakage": {
+    "shared_keys_dev_test": 0,
+    "shared_titles_dev_test": 1,
+    "shared_titles_ext_vs_hallmark": 0,
+    "dev_counts": {
+      "valid": 504,
+      "hallucinated": 615
+    },
+    "test_counts": {
+      "valid": 307,
+      "hallucinated": 524
+    },
+    "ext_counts": {
+      "valid": 172,
+      "hallucinated": 169
+    },
+    "ext_topics": 40
+  }
+}
