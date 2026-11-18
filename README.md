@@ -1,6 +1,6 @@
 # Judging a reference by how it looks
 
-**ATR Lab 02 · Farigh A. Sabri (MCL2026011), IIITA**
+**ATR Lab 02 · Farigh Ahmad Sabri (MCL2026011), IIITA**
 
 How much does the *surface form* of a citation (which fields it has, how its
 authors, title and identifiers are written) reveal about whether it is
